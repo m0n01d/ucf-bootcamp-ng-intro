@@ -67,9 +67,11 @@ You can build a whole application with just angular.js. You can also leverage yo
 
   + we've refactored `myComponent` to take a list of titles to render,
   ```javascript
+
     bindings: {
       titles: '<',
     }
+
   ```
   + the `'<'` binding tells our component to expect data
   + through our `myParent` component we pass its child `my-component` it's list of `people`, all of whom have a `title` attribute
