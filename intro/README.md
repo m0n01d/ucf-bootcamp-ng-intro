@@ -62,10 +62,11 @@ You can build a whole application with just angular.js. You can also leverage yo
     * having 1 `my-component` is fine, but what if we wanted to render a bunch of them, and not manually copy paste them. useful for rendering arrays of data
 
 
+#### ng-repeat
 + open **repeater**
 
   + we've refactored `myComponent` to take a list of titles to render,
-  + ```javascript
+  ```javascript
     bindings: {
       titles: '<',
     }
