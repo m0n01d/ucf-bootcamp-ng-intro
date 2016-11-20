@@ -46,21 +46,22 @@ You can build a whole application with just angular.js. You can also leverage yo
 
 ### *students* extend **hello props**
 
-    + add a second property to `bindings`, and render it
-    ```javascript
-      bindings: {
-        title: '@',
-        message: '@',
-      },
-      template: '<p>Hello {{$ctrl.title}}! {{$ctrl.message}}</p>',
+  + add a second property to `bindings`, and render it
+  ```javascript
 
-      ```
+    bindings: {
+      title: '@',
+      message: '@',
+    },
+    template: '<p>Hello {{$ctrl.title}}! {{$ctrl.message}}</p>',
 
-      ```html
-      <my-component title="Students" message="angular is awesome"></my-component>
-      ```
-    + now anywhere we need a `my-component` we can drop it in and pass it props
-    * having 1 `my-component` is fine, but what if we wanted to render a bunch of them, and not manually copy paste them. useful for rendering arrays of data
+    ```
+
+    ```html
+    <my-component title="Students" message="angular is awesome"></my-component>
+    ```
+  + now anywhere we need a `my-component` we can drop it in and pass it props
+  * having 1 `my-component` is fine, but what if we wanted to render a bunch of them, and not manually copy paste them. useful for rendering arrays of data
 
 ### open **repeater**
 
