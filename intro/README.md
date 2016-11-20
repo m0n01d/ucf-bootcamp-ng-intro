@@ -58,12 +58,10 @@ You can build a whole application with just angular.js. You can also leverage yo
       ```html
       <my-component title="Students" message="angular is awesome"></my-component>
       ```
-      now anywhere we need a `my-component` we can drop it in and pass it props
+    + now anywhere we need a `my-component` we can drop it in and pass it props
+    * having 1 `my-component` is fine, but what if we wanted to render a bunch of them, and not manually copy paste them. useful for rendering arrays of data
 
-
-      having 1 `my-component` is fine, but what if we wanted to render a bunch of them, and not manually copy paste them. useful for rendering arrays of data
-
- + open **repeater**
++ open **repeater**
 
   we've refactored `myComponent` to take a list of titles to render,
   ```javascript
