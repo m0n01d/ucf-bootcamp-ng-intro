@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div>
+      <my-component></my-component>
+      <!-- copy and paste multiple <my-component> -->
+      <!-- <my-component></my-component> -->
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script>
+      var app = angular.module('app', []);
+
+      app.component('myComponent', {
+        template: '<p>Hello world!</p>',
+      });
+    </script>
+  </body>
+</html>
