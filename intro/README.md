@@ -47,7 +47,7 @@ You can build a whole application with just angular.js. You can also leverage yo
 ### *students* extend **hello props**
 
     + add a second property to `bindings`, and render it
-    + ```javascript
+    ```javascript
       bindings: {
         title: '@',
         message: '@',
@@ -55,6 +55,7 @@ You can build a whole application with just angular.js. You can also leverage yo
       template: '<p>Hello {{$ctrl.title}}! {{$ctrl.message}}</p>',
 
       ```
+
       ```html
       <my-component title="Students" message="angular is awesome"></my-component>
       ```
