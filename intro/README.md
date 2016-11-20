@@ -14,7 +14,7 @@ You can build a whole application with just angular.js. You can also leverage yo
 
 ## Getting Started
 
-  + open **hello world**
+### open **hello world**
 
   The `angular.module` method on line 16 is a global place for creating, registering and retrieving Angular modules
 
@@ -37,14 +37,14 @@ You can build a whole application with just angular.js. You can also leverage yo
 
   Right now `myComponent` doesn't do much, nor is it very reusable
 
-  + open **hello props**
+### open **hello props**
 
   you'll notice on line 10, we're passing in `"Class"` as a property/attribute called `title`. On line line 22 in our template, we use angular's interpolation syntax, two `{{}}` to render out our title inside of our template. Here, `$ctrl` refers to our component itself (its `this`). Our component has a property called `title`, passed in through its `bindings`
 
   the `'@'` tells our component to expect  our `title` property as a `"string"`
 
 
-  + *students* extend **hello props**
+### *students* extend **hello props**
 
     + add a second property to `bindings`, and render it
     + ```javascript
@@ -61,7 +61,7 @@ You can build a whole application with just angular.js. You can also leverage yo
     + now anywhere we need a `my-component` we can drop it in and pass it props
     * having 1 `my-component` is fine, but what if we wanted to render a bunch of them, and not manually copy paste them. useful for rendering arrays of data
 
-open **repeater**
+### open **repeater**
 
   + we've refactored `myComponent` to take a list of titles to render,
   ```javascript
