@@ -70,13 +70,14 @@ You can build a whole application with just angular.js. You can also leverage yo
 
     bindings: {
       titles: '<',
-    }
+    },
+    template: '<p ng-repeat="message in $ctrl.titles">Hello {{message.title}}!</p>',
 
   ```
   + the `'<'` binding tells our component to expect data
   + through our `myParent` component we pass its child `my-component` it's list of `people`, all of whom have a `title` attribute
 
-  + `myComponent` uses the `ng-repeat` directive to loop over each object in its `titles` array binding, printing out each `title`, where `message` in `message in $ctrl.titles` refers to the current message in the iteration
+  + `myComponent` uses the `ng-repeat` directive to loop over each object in its `titles` array binding, printing out each `title`, where `message` in `message in $ctrl.titles` refers to the current message (object) in the iteration
 
   + .components() in angular have lifecycle hooks,
     + `$onInit` is for initialization
