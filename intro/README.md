@@ -83,3 +83,105 @@ You can build a whole application with just angular.js. You can also leverage yo
     + `$onInit` is for initialization
 
   + more on lifecycle hooks [Todd Motto's article](https://toddmotto.com/angular-1-5-lifecycle-hooks)
+
+
+#### directives
+
+now that we've used directives, lets look at what they are, and what they do
+
+* what is a directive?
+   * "At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler (`$compile`) to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform the DOM element and its children." [angular docs](https://docs.angularjs.org/guide/directive)
+
+you can use it to add event listeners like `ng-click` adds a click handler (surprise), or `ng-change` listens for a change even on an input, etc
+
+angular has built in directives, for adding behavior to your app
+`ng-model` on an `<input ng-model="$ctrl.foo" />` will update the value of our model `$ctrl.foo`
+
+```javascript
+  const myApp = {
+    template: `
+      <input ng-model="$ctrl.foo" type="text">
+      <p>my model says: {{$ctrl.foo}}</p>
+    `,
+    controller: function() {
+      this.$onInit = function() {
+        this.foo = 'Hello World';
+      };
+    }
+  };
+```
+
+Angular lets you create your own directives, with `.directive()` method
+
+Directives are great (and should be reserved) for DOM manipulation
+
+If you need to add behavior that doesn't come built in with angular, you can create your own directive to handle that action/feature
+
+for instance, there is no built in handler for `<input type="file" />` like there is for `type="text"`
+
+```javascript
+  const myInput = function() {
+    return {
+      restrict: 'E', //E says we use a custom element
+      //restrict: 'A', says use an attribute '<div my-input/>'
+      //restrict:'AE', either
+      template: `
+        <input type="file" />
+      `,
+      scope: {
+        onChange: '=',
+      },
+      link: function(scope, el, attrs) {
+        el.on('change', function(event) {
+          console.log('my files::', event.target.files);
+
+          scope.onChange({ //delegate handling of our files to a parent
+            $event: {
+              files: event.target.files
+            }
+          });
+        });
+      }
+    };
+  }
+
+  app.directive('myInput', myInput);
+
+
+  // then in the template for a parent .component()
+
+  const parentComponent = {
+    //....
+    template: `
+      <p>my cool app</p>
+      <div>
+        <my-input
+          on-change="$ctrl.uploadCatPicsToServer($event)">
+        </my-input>
+      </div>
+    `,
+    controller: function() {
+      this.uploadCatPicsToServer = function($event) {
+        var files = $event.files;
+        // ajax request with files.....
+      };
+    }
+  };
+
+```
+
+
+
+or if you need/want to wrap a jquery plugin for use with angular
+
+when using `restrict` property
+
+```
+When should I use an attribute versus an element?
+
+Use an element when you are creating a component that is in control of the template.
+
+The common case for this is when you are creating a Domain-Specific Language for parts of your template.
+
+Use an attribute when you are decorating an existing element with new functionality.
+```
