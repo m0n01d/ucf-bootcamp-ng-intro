@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div>
+      <my-parent title="Students"></my-parent>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script>
+      var app = angular.module('app', []);
+
+      app.component('myComponent', {
+        bindings: {
+          titles: '<',
+        },
+        template: '<p ng-repeat="message in $ctrl.titles">Hello {{message.title}}!</p>',
+      });
+
+      app.component('myParent', {
+        template: `
+          <div style="outline: 1px solid indianred">
+            <my-component
+              titles="$ctrl.people">
+            </my-component>
+          </div>
+        `,
+        controller: function() {
+          this.$onInit = function(PeopleService) {
+            this.people = PeopleService.get();
+          };
+        }
+      });
+
+      // @TODO create a PeopleService service and have it give you a list of people
+      // @TODO BONUS add "crud" operations to add/remove people
+        // you'll probably have to extend our other components as well
+    </script>
+  </body>
+</html>
