@@ -351,3 +351,18 @@ var bazComponent = {
 `UserService` is a custom service injected into (required by) `bazComponent`
 
 `$http` that is injected into our `UserService` is a built-in service that is injected into `UserService`
+
+Services are singletons
+
+they are created once and passed around to wherever they are required
+
+
+* if you look into the docs on Services, youll see that there are 3 "services"
+
+  * `.factory`
+  * `.service`
+  * `.provider`
+
+`.factory` injects the `return` value from the function
+`.service` injects an instance of the function
+`.provider` ?
