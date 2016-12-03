@@ -99,7 +99,9 @@ now that we've used directives, lets look at what they are, and what they do
 you can use it to add event listeners like `ng-click` adds a click handler (surprise), or `ng-change` listens for a change even on an input, etc
 
 angular has built in directives, for adding behavior to your app
-`ng-model` on an `<input ng-model="$ctrl.foo" />` will update the value of our model `$ctrl.foo`
+`ng-model` on an `<input ng-model="$ctrl.foo" />` will update the value of our model `$ctrl.foo`  
+
+`ng-model` sets up two-way databinding between our view and model
 
 ```javascript
   const myApp = {
@@ -270,3 +272,82 @@ it evaluates an expression when that element is clicked
 in the second example, we added `ng-class` which is a directive that can add a class or classes to an element, based on the expression
 
 here its using a ternary operator to check if the `$ctrl.count` property is even, if so add the `.even` class, otherwise add `.odd`
+
+
+#### dependency injection
+
+angular comes with many "services"
+
+* Angular services are substitutable objects that are wired together using dependency injection (DI). You can use services to organize and share code across your app.
+
+* Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.
+
+* Note: Like other core Angular identifiers, built-in services always start with $ (e.g. $http).
+
+
+one use of services is to share state across pages, components or routes
+
+dependency injection makes it trivial to modularize your
+
+
+
+
+```javascript
+// app.js
+import angular from 'angular';
+
+import auth from 'modules/auth';
+import bazModule from 'modules/baz';
+
+angular.module('app', ['auth', 'baz']);
+
+
+
+// auth module
+
+var auth = angular.module('auth', []);
+
+var UserService = auth.factory('UserService', function($http) {
+  var currentUser = {};
+
+  return {
+    get: function() {
+      return $http.get('/path/to/api/user')
+    },
+    isAuth: function() {
+      return currentUser && currentUser.id;
+    },
+    logOut: function() {
+      currentUser = {};
+    },
+    login: function(credentials) {
+      return $http.post('/path/to/api/user', credentials)
+        .then(function(user) {
+          return angular.extend(currentUser, user);
+        });
+    },
+    getCurrentUser: function() {
+      return currentUser;
+    }
+  }
+});
+
+
+// baz module
+
+var baz = angular.module('baz', []);
+
+var bazComponent = {
+  template: `
+    <div>{{$ctrl.currentUser.email}}</div>
+  `,
+  controller: function(UserService) {
+    this.currentUser = UserService.getCurrentUser();
+  }
+}
+
+```
+
+`UserService` is a custom service injected into (required by) `bazComponent`
+
+`$http` that is injected into our `UserService` is a built-in service that is injected into `UserService`
