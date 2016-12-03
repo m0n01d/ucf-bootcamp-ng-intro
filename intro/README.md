@@ -90,6 +90,10 @@ You can build a whole application with just angular.js. You can also leverage yo
 now that we've used directives, lets look at what they are, and what they do
 
 * what is a directive?
+   * wikipedia
+    + In computer programming, a directive pragma (from "pragmatic") is a language construct that specifies how a compiler (or assembler or interpreter) should process its input.
+
+  * angular docs
    * "At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler (`$compile`) to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform the DOM element and its children." [angular docs](https://docs.angularjs.org/guide/directive)
 
 you can use it to add event listeners like `ng-click` adds a click handler (surprise), or `ng-change` listens for a change even on an input, etc
@@ -174,6 +178,43 @@ for instance, there is no built in handler for `<input type="file" />` like ther
 
 or if you need/want to wrap a jquery plugin for use with angular
 
+```javascript
+
+  var myCarousel = function() {
+    return {
+      template: `
+      <div class="item">
+        <img src="..." alt="...">
+        <div class="carousel-caption">
+          <h3>...</h3>
+          <p>...</p>
+        </div>
+      </div>
+      `,
+      link: function(scope, el, attrs) {
+        // el is basically a jQuery wrapped object
+        // $(el)
+        el.on('slide.bs.carousel', function () {
+          // do something…
+        });
+        /*
+        $('#myCarousel').on('slide.bs.carousel', function () {
+          // do something…
+        })
+        */
+
+        el.carousel({
+          interval: 2000
+        });
+
+
+      }
+    }
+  };
+
+  app.directive('myCarousel', myCarousel);
+```
+
 when using `restrict` property
 
 ```
@@ -184,4 +225,42 @@ Use an element when you are creating a component that is in control of the templ
 The common case for this is when you are creating a Domain-Specific Language for parts of your template.
 
 Use an attribute when you are decorating an existing element with new functionality.
+```
+
+`ng-click` is probably the most common directives
+
+it evaluates an expression when that element is clicked
+
+```javascript
+  const myApp = {
+    template: `
+      <button ng-click="$ctrl.count += 1">
+        Button was clicked {{$ctrl.count}} times
+      </button>
+    `,
+    controller: class BtnCounter {
+      $onInit() {
+        this.count = 0;
+      }
+    }
+  }
+
+  // can also call methods
+
+  const myApp = {
+    template: `
+      <button ng-click="$ctrl.increment()">
+        Button was clicked {{$ctrl.count}} times
+      </button>
+    `,
+    controller: class BtnCounter {
+      $onInit() {
+        this.count = 0;
+      }
+
+      increment() {
+        this.count += 1;
+      }
+    }
+  }
 ```
