@@ -249,7 +249,9 @@ it evaluates an expression when that element is clicked
 
   const myApp = {
     template: `
-      <button ng-click="$ctrl.increment()">
+      <button
+        ng-class="$ctrl.count  % 2 ? 'odd' : 'even'"
+        ng-click="$ctrl.increment()">
         Button was clicked {{$ctrl.count}} times
       </button>
     `,
@@ -264,3 +266,7 @@ it evaluates an expression when that element is clicked
     }
   }
 ```
+
+in the second example, we added `ng-class` which is a directive that can add a class or classes to an element, based on the expression
+
+here its using a ternary operator to check if the `$ctrl.count` property is even, if so add the `.even` class, otherwise add `.odd`
