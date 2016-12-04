@@ -116,6 +116,7 @@ angular has built in directives, for adding behavior to your app
     }
   };
 ```
+[codepen](http://codepen.io/imdwit/pen/XNZGzQ)
 
 Angular lets you create your own directives, with `.directive()` method
 
@@ -236,7 +237,7 @@ it evaluates an expression when that element is clicked
 ```javascript
   const myApp = {
     template: `
-      <button ng-click="$ctrl.count += 1">
+      <button ng-click="$ctrl.count = $ctrl.count + 1">
         Button was clicked {{$ctrl.count}} times
       </button>
     `,
@@ -267,6 +268,18 @@ it evaluates an expression when that element is clicked
       }
     }
   }
+
+
+  var count = 0;
+  $('button').on('click', function() {
+    count += 1;
+    if (count % 2) {
+      $(this).addClass('odd').removeClass('even');
+    } else {
+      $(this).addClass('even').removeClass('odd');
+    }
+    $(this).text('Button was clicked ' + count + 'times');
+  });
 ```
 
 in the second example, we added `ng-class` which is a directive that can add a class or classes to an element, based on the expression
@@ -283,6 +296,8 @@ angular comes with many "services"
 * Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.
 
 * Note: Like other core Angular identifiers, built-in services always start with $ (e.g. $http).
+
+* Angular Prefixes $ and $$: To prevent accidental name collisions with your code, Angular prefixes names of public objects with $ and names of private objects with $$. Please do not use the $ or $$ prefix in your code.
 
 
 one use of services is to share state across pages, components or routes
@@ -366,3 +381,23 @@ they are created once and passed around to wherever they are required
 `.factory` injects the `return` value from the function
 `.service` injects an instance of the function
 `.provider` ?
+
+### **open injection**
+
+
+couple otehr cool buil-i services are
+* `$timeout`
+  + like `setTimeout` but it works with angulars digest loop
+* `$q`
+  + promise library
+* `$window`
+  + like `window`
+* `$compile`
+  + useful inside directives/components
+  + compile a template with data/scope
+  + programatically create components
+
+### **open cookies**
+
+explain activity
+finish
