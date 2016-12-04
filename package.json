@@ -1,0 +1,24 @@
+{
+  "name": "ng-lesson",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imdwit/uff-bootcamp-ng-intro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imdwit/uff-bootcamp-ng-intro/issues"
+  },
+  "homepage": "https://github.com/imdwit/uff-bootcamp-ng-intro#readme",
+  "dependencies": {
+    "connect": "^3.5.0",
+    "serve-static": "^1.11.1"
+  }
+}
