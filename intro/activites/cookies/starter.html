@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <my-component></my-component>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+    <script>
+    /// FOR THIS TO WORK YOU HAVE TO BE RUNING IT FROM A SERVER
+    // NPM INSTALL THEN RUN /intro/activites/cookies/server.js to serve this file
+      // require ngCookies in our app
+      var app = angular.module('app', []);
+
+      app.component('myComponent', {
+        bindings: {
+          titles: '<',
+        },
+        controller: function() {
+          // inject our $cookies service
+          this.$onInit = function() {
+            // get the initial count
+            this.count = 0;
+          }
+
+          this.increment = function() {
+            this.count += 1;
+            // save the count
+          }
+        },
+        template: `
+          <div>
+            <p>Persisted click count: {{$ctrl.count}}</p>
+            <button ng-click="$ctrl.increment()">Click Me!</button>
+          </div>
+        `,
+      });
+    </script>
+  </body>
+</html>

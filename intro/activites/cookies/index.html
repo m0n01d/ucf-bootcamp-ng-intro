@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <my-component></my-component>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+    <script>
+      var app = angular.module('app', [
+        'ngCookies',
+      ]);
+
+      app.component('myComponent', {
+        bindings: {
+          titles: '<',
+        },
+        controller: function($cookies) {
+          //
+          this.$onInit = function() {
+            this.count = $cookies.get('count') || 0;
+          }
+
+          this.increment = function() {
+            this.count += 1;
+            $cookies.put('count', this.count);
+          }
+        },
+        template: `
+          <div>
+            <p>Persisted click count: {{$ctrl.count}}</p>
+            <button ng-click="$ctrl.increment()">Click Me!</button>
+          </div>
+        `,
+      });
+    </script>
+  </body>
+</html>
