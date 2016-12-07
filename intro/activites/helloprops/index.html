@@ -3,13 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="">
   </head>
   <body>
 
     <div>
-      <my-component title="Class" /></my-component>
+      <my-component
+        message="angular is awesome"
+        title="Class">
+      </my-component>
       <!-- copy and paste multiple <my-component> -->
-      <my-component title="Students"></my-component>
+      <my-component
+        title="Students"
+        message="angular is totes the bees knees">
+      </my-component>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script>
@@ -18,8 +25,15 @@
       app.component('myComponent', {
         bindings: {
           title: '@',
+          message: '@',
         },
-        template: '<p>Hello {{$ctrl.title}}!</p>',
+        template: `
+          <div class="jumbotron">
+            <p>super aewsome reusable template</p>
+            <p>Hello {{$ctrl.title}},</p>
+            <p>{{$ctrl.message}} 1!@#$%#@!~@#$</p>
+          </div>
+          `,
       });
     </script>
   </body>

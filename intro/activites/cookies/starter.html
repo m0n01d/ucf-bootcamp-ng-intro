@@ -14,22 +14,22 @@
     /// FOR THIS TO WORK YOU HAVE TO BE RUNING IT FROM A SERVER
     // NPM INSTALL THEN RUN /intro/activites/cookies/server.js to serve this file
       // require ngCookies in our app
-      var app = angular.module('app', []);
+      var app = angular.module('app', [
+        'ngCookies',
+      ]);
 
       app.component('myComponent', {
-        bindings: {
-          titles: '<',
-        },
-        controller: function() {
+        controller: function($cookies) {
           // inject our $cookies service
           this.$onInit = function() {
             // get the initial count
-            this.count = 0;
+            this.count = parseInt($cookies.get('clickCount'), 10) || 0;
           }
 
           this.increment = function() {
             this.count += 1;
             // save the count
+            $cookies.put('clickCount', this.count);
           }
         },
         template: `
