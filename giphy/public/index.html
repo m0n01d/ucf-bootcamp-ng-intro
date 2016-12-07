@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ng-giphy!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: monospace;
+      font-size: 1.2em;
+    }
+
+    #gifs {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gif {
+      margin: 1em 0 1em;
+      flex: 33% 0 1;
+    }
+
+    img {
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
+    }
+
+    .btn-group {
+      margin-bottom: 2em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;;
+    }
+
+    .btn-group__btn {
+      flex: 1 1 125px;
+
+      align-self: center;
+      padding: 1em 2em;
+      border-radius: 5px;
+      background-color: indianred;
+      color: #fff;
+      outline: 0;
+      border: 0;
+      margin: 0.25em;
+    }
+
+    input {
+      display: block;
+      width: 120px;
+      height: 20px;
+      margin: 2em 0 2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- This is where React will render the contents it generates -->
+  <div id="app" ui-view>
+    <hello-world></hello-world>
+  </div>
+
+  <!-- All of our JS code will be transpiled into this bundle.js file -->
+  <script src="bundle.js"></script>
+
+</body>
+
+</html>
