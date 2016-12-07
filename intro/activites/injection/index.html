@@ -28,12 +28,49 @@
             </my-component>
           </div>
         `,
-        controller: function() {
-          this.$onInit = function(PeopleService) {
+        controller: function(PeopleService, $timeout) {
+          this.$onInit = function() {
             this.people = PeopleService.get();
+
+            $timeout(() => {
+              PeopleService.removePerson(2);
+            }, 2000);
+
+            $timeout(() => {
+              PeopleService.addPerson({title: 'Ryan'})
+            }, 3000);
+
           };
         }
       });
+
+      app.factory('PeopleService', function() {
+          var people = [
+            {
+              title: 'Bob',
+            },
+            {
+              title: 'Dan',
+            },
+            {
+              title: 'Dwit',
+            },
+            {
+              title: 'John',
+            },
+          ];
+        return {
+          get: function() {
+            return people;
+          },
+          addPerson: function(person) {
+            people.push(person);
+          },
+          removePerson: function(index) {
+            people.splice(index, 1);
+          }
+        }
+      })
 
       // @TODO create a PeopleService service and have it give you a list of people
       // @TODO BONUS add "crud" operations to add/remove people
