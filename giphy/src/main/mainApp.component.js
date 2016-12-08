@@ -9,6 +9,9 @@ var mainApp = {
       <btn-group
         topics="$ctrl.topics">
       </btn-group>
+      <gifs-list
+        gifs="$ctrl.gifs">
+      </gifs-list>
       <pre><code>{{$ctrl.gifs | json}}</code></pre>
     </div>
   `,
