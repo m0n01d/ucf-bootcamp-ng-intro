@@ -1,7 +1,11 @@
 import angular from 'angular';
 
-const app = angular.module('app', []);
+import addBtnModule from './addBtn';
+
+const app = angular.module('app', [
+  'app.addBtn',
+]);
 
 app.component('helloWorld', {
-  template: `<p>hello world</p>`,
+  template: `<add-btn></add-btn>`,
 });
