@@ -34,6 +34,12 @@ var mainApp = {
 
       this.topics.push(topic);
     };
+
+    this.toggleGif = function($event) {
+      console.log($event)
+      var gif = $event.gif;
+      gif.playing = !gif.playing;
+    }
   },
 };
 
