@@ -6,6 +6,9 @@ var mainApp = {
         handle-key-up="$ctrl.addBtn($event)"
       >
       </add-btn>
+      <btn-group
+        topics="$ctrl.topics">
+      </btn-group>
       <pre><code>{{$ctrl.topics | json}}</code></pre>
     </div>
   `,
