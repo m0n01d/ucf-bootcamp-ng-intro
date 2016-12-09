@@ -16,7 +16,7 @@ var addBtn = {
 
     this._handleKeyUp = function($event) {
       if ($event.which === 13) {
-        this.handleKeyUp({
+        this.handleKeyUp({ //addBtn
           $event: {
             topic: this.topic,
           },
