@@ -7,6 +7,7 @@ var btnGroup = {
       <a
         class="btn-group__btn"
         ng-repeat="topic in $ctrl.topics track by $index"
+        ui-sref="app.gifs({topic: topic})"
         >
           {{topic}}
         </a>

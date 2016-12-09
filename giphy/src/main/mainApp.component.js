@@ -8,6 +8,8 @@ var mainApp = {
       <btn-group
         topics="$ctrl.topics">
       </btn-group>
+      <div ui-view>
+      </div>
     </div>
   `,
   controller: function() {
@@ -25,6 +27,11 @@ var mainApp = {
       this.topics.push(topic);
 
       console.log(this.topics);
+    };
+
+    this.toggleGif = function($event) {
+      var gif = $event.gif;
+      gif.playing = !gif.playing;
     };
   },
 };
