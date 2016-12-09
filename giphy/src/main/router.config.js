@@ -18,7 +18,7 @@ export default function routeConfig($stateProvider, $urlRouterProvider) {
               var original = gif.images.original.url;
               var still = gif.images.original_still.url;
               var rating = gif.rating;
-              var playing = false;
+              var playing = true;
               return {
                 original,
                 still,
