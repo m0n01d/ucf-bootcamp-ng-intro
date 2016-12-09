@@ -5,6 +5,9 @@ var mainApp = {
       <add-btn
         handle-key-up="$ctrl.addBtn($event)">
       </add-btn>
+      <btn-group
+        topics="$ctrl.topics">
+      </btn-group>
     </div>
   `,
   controller: function() {
